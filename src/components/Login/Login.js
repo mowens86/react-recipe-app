@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import {
     Flex,
     Box,
@@ -15,6 +16,10 @@ import {
 
   export default function Login() {
 
+    const auth0LoginHandler = () => {
+        const { loginWithRedirect } = useAuth0();
+    }
+
     // Create initial sign-up page with link to login page if already have an account
 
     return (
@@ -24,44 +29,25 @@ import {
         justify={'center'}
         bg={useColorModeValue('gray.50', 'gray.800')}>
             <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-            <Stack align={'center'}>
-                <Heading fontSize={'4xl'}>Sign up for an account</Heading>
-                <Text fontSize={'lg'} color={'gray.600'}>
-                to enjoy all of our cool recipes 🍲
-                </Text>
-            </Stack>
             <Box
                 rounded={'lg'}
                 bg={useColorModeValue('white', 'gray.700')}
                 boxShadow={'lg'}
                 p={8}>
                 <Stack spacing={4}>
-                    <FormControl id="email">
-                        <FormLabel>Email address</FormLabel>
-                        <Input type="email" />
-                    </FormControl>
-                    <FormControl id="password">
-                        <FormLabel>Password</FormLabel>
-                        <Input type="password" />
-                    </FormControl>
-                    <Stack spacing={10}>
-                        <Stack
-                        direction={{ base: 'column', sm: 'row' }}
-                        align={'start'}
-                        justify={'space-between'}>
-                            <Text mx={'auto'}>
-                                Already have an account? <Link color={'blue.400'}>Sign in!</Link>
-                            </Text>
-                        </Stack>
+                    <Heading fontSize={'4xl'}>Sign up or login</Heading>
+                        <Text fontSize={'lg'} color={'gray.600'}>
+                        to enjoy all of our cool recipes 🍲
+                        </Text>
                         <Button
+                        onClick={auth0LoginHandler}
                         bg={'blue.400'}
                         color={'white'}
                         _hover={{
                             bg: 'blue.500',
                         }}>
-                        Sign Up
+                        Get Started
                         </Button>
-                    </Stack>
                 </Stack>
             </Box>
             </Stack>
