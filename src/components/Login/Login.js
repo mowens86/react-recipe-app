@@ -1,5 +1,6 @@
 import React from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
+import LoginButton from '../UI/LoginButton/LoginButton';
+import LogoutButton from '../UI/LogoutButton/LogoutButton';
 import {
     Flex,
     Box,
@@ -15,10 +16,6 @@ import {
   } from '@chakra-ui/react';
 
   export default function Login() {
-
-    const auth0LoginHandler = () => {
-        const { loginWithRedirect } = useAuth0();
-    }
 
     // Create initial sign-up page with link to login page if already have an account
 
@@ -39,15 +36,8 @@ import {
                         <Text fontSize={'lg'} color={'gray.600'}>
                         to enjoy all of our cool recipes 🍲
                         </Text>
-                        <Button
-                        onClick={auth0LoginHandler}
-                        bg={'blue.400'}
-                        color={'white'}
-                        _hover={{
-                            bg: 'blue.500',
-                        }}>
-                        Get Started
-                        </Button>
+                        <LoginButton>Get Started</LoginButton>
+                        <LogoutButton>Logout</LogoutButton>
                 </Stack>
             </Box>
             </Stack>
