@@ -17,6 +17,10 @@ import {
 
   export default function Login() {
 
+    /**
+     * Must set-up Google Dev Console for Auth0 to work in production environment
+     */
+
     // Create initial sign-up page with link to login page if already have an account
 
     return (
