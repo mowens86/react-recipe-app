@@ -9,9 +9,10 @@ import {
     useColorModeValue,
     VisuallyHidden,
   } from '@chakra-ui/react';
-  import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
-  import { ReactNode } from 'react';
-  
+import { FaBriefcase, FaGithub } from 'react-icons/fa';
+import { HiMail } from 'react-icons/hi';
+import { ReactNode } from 'react';
+
   const Logo = (props) => {
     return (
       <svg
@@ -35,6 +36,7 @@ import {
     children,
     label,
     href,
+    target
   }) => {
     return (
       <chakra.button
@@ -49,6 +51,7 @@ import {
         alignItems={'center'}
         justifyContent={'center'}
         transition={'background 0.3s ease'}
+        target={target}
         _hover={{
           bg: useColorModeValue('blackAlpha.200', 'whiteAlpha.200'),
         }}>
@@ -59,6 +62,9 @@ import {
   };
   
   export default function Footer() {
+
+    const year = new Date().getFullYear();
+
     return (
       <Box
         bg={useColorModeValue('gray.50', 'gray.900')}
@@ -72,16 +78,16 @@ import {
           justify={{ base: 'center', md: 'space-between' }}
           align={{ base: 'center', md: 'center' }}>
           <Logo />
-          <Text>© 2020 Chakra Templates. All rights reserved</Text>
+          <Text>© {year}, Sporked was built with React by Mike Owens <Link color="teal.500" href="https://www.mowenstech.com/" target="_blank">(View Portfolio)</Link>. All rights reserved.</Text>
           <Stack direction={'row'} spacing={6}>
-            <SocialButton label={'Twitter'} href={'#'}>
-              <FaTwitter />
+            <SocialButton label={'Github'} href={'https://github.com/mowens86'} target="_blank">
+              <FaGithub />
             </SocialButton>
-            <SocialButton label={'YouTube'} href={'#'}>
-              <FaYoutube />
+            <SocialButton label={'Resume'} href={'https://www.mowenstech.com/assets/MJO_FED_Resume.pdf'} target="_blank">
+              <FaBriefcase />
             </SocialButton>
-            <SocialButton label={'Instagram'} href={'#'}>
-              <FaInstagram />
+            <SocialButton label={'Mail'} href={'mailto:mocoding86@gmail.com?subject=I Found You via Sporked'} target="_blank">
+              <HiMail />
             </SocialButton>
           </Stack>
         </Container>
