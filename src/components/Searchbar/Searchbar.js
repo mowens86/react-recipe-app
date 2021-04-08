@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import {
+    Box,
     Button,
     FormControl,
     FormLabel,
     Input
   } from "@chakra-ui/react";
 import { IoChevronForward } from 'react-icons/io5';
+import Results from '../Results/Results';
 import axios from 'axios';
 
-// const tempAPIKey = '782f37d17a444c24b640eb1fb22a7518';
+
 const API_KEY = process.env.REACT_APP_FOOD_API_KEY;
 
-function Searchbar() {
+const Searchbar = () => {
     // States
     const [ foodData, setFoodData ] = useState([]);
     const [ error, setError ] = useState(false);
     const [ loading, setLoading ] = useState(false);
-    const [ search, setSearch ] = useState('Chicken');
-    const [ url, setUrl ] = useState(
-        `https://api.spoonacular.com/recipes/complexSearch?query=${search}&apiKey=${API_KEY}`
-        );
+    const [ search, setSearch ] = useState('');
+    const [ url, setUrl ] = useState(``);
 
     // Fetch data by searching for food
     useEffect(() => {
@@ -48,15 +48,33 @@ function Searchbar() {
     const searchHandler = (event) => {
         event.preventDefault();
         setUrl(
-            `https://api.spoonacular.com/recipes/complexSearch?query=${search}&apiKey=${API_KEY}`
+            `https://api.spoonacular.com/recipes/complexSearch?query=${search}&addRecipeInformation=true&instructionsRequired=true&includeIngredients&number=1&apiKey=${API_KEY}`
             )
     }
 
+    let foodResults;
+
+    if (foodData.results !== undefined) {
+        const keyVariables = foodData.results[0].id;
+        const foodName = foodData.results[0].title;
+        const foodImage = foodData.results[0].image;
+        console.log(foodName, foodImage)
+        foodResults = (
+            <Results
+                key={keyVariables}
+                name={foodName}
+                image={foodImage}
+            />
+        );
+    }
+
+    
+
     return (
-        <section>
+        <Box>
             <form onSubmit={searchHandler}>
                 <FormControl id="search">
-                    <FormLabel>Search for food</FormLabel>
+                    <FormLabel>Search your favorite recipe</FormLabel>
                     <Input 
                         type="text" 
                         placeholder="Type here..."
@@ -65,7 +83,8 @@ function Searchbar() {
                     <Button rightIcon={<IoChevronForward />} type="submit">Search</Button>
                 </FormControl>
             </form>
-        </section>
+            {foodResults}
+        </Box>
     )
 }
 
