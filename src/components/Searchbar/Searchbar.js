@@ -4,7 +4,8 @@ import {
     Button,
     FormControl,
     FormLabel,
-    Input
+    Input,
+    Stack
   } from "@chakra-ui/react";
 import { IoChevronForward } from 'react-icons/io5';
 import Results from '../Results/Results';
@@ -48,26 +49,21 @@ const Searchbar = () => {
     const searchHandler = (event) => {
         event.preventDefault();
         setUrl(
-            `https://api.spoonacular.com/recipes/complexSearch?query=${search}&addRecipeInformation=true&instructionsRequired=true&includeIngredients&number=1&apiKey=${API_KEY}`
+            `https://api.spoonacular.com/recipes/complexSearch?query=${search}&addRecipeInformation=true&instructionsRequired=true&includeIngredients&number=2&apiKey=${API_KEY}` // Adjust number for amount of search results
             )
     }
 
     let foodResults;
 
     if (foodData.results !== undefined) {
-        const keyVariables = foodData.results[0].id;
-        const foodName = foodData.results[0].title;
-        const foodImage = foodData.results[0].image;
-        console.log(foodName, foodImage)
-        foodResults = (
+        foodResults = foodData.results.map(data => ( // Loops through search results for all finds
             <Results
-                key={keyVariables}
-                name={foodName}
-                image={foodImage}
+                key={data.id}
+                name={data.title}
+                image={data.image}
             />
-        );
+        ));
     }
-
     
 
     return (
@@ -83,7 +79,9 @@ const Searchbar = () => {
                     <Button rightIcon={<IoChevronForward />} type="submit">Search</Button>
                 </FormControl>
             </form>
-            {foodResults}
+            <Stack direction={["column", "row"]} spacing="24px">
+                {foodResults}
+            </Stack>
         </Box>
     )
 }

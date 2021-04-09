@@ -68,7 +68,11 @@ import { ReactNode } from 'react';
     return (
       <Box
         bg={useColorModeValue('gray.50', 'gray.900')}
-        color={useColorModeValue('gray.700', 'gray.200')}>
+        color={useColorModeValue('gray.700', 'gray.200')}
+        position="fixed"
+        bottom="0"
+        width="100%"
+      >
         <Container
           as={Stack}
           maxW={'6xl'}
@@ -76,7 +80,8 @@ import { ReactNode } from 'react';
           direction={{ base: 'column', md: 'row' }}
           spacing={4}
           justify={{ base: 'center', md: 'space-between' }}
-          align={{ base: 'center', md: 'center' }}>
+          align={{ base: 'center', md: 'center' }}
+        >
           <Logo />
           <Text>© {year}, Sporked was built with React by Mike Owens <Link color="teal.500" href="https://www.mowenstech.com/" target="_blank">(View Portfolio)</Link>. All rights reserved.</Text>
           <Stack direction={'row'} spacing={6}>
