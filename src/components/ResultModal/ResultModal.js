@@ -3,6 +3,7 @@ import { htmlTagRemover } from '../Helpers/Helpers';
 import {
   Box,
   Button,
+  Center,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -24,7 +25,7 @@ const ResultModal = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [scrollBehavior, setScrollBehavior] = React.useState("inside");
 
-  console.log(props.modalInstructions);
+  // console.log(props.modalInstructions);
 
   return (
     <>
@@ -33,7 +34,7 @@ const ResultModal = (props) => {
         size="xs"
         mt="2"
         >
-          More Recipe Info
+          More Info
           </Button>
       <Modal
         isCentered
@@ -48,10 +49,12 @@ const ResultModal = (props) => {
             src={props.modalImage} 
             alt={props.name} 
             title={props.name}
+            borderTopRightRadius="md"
+            borderTopLeftRadius="md"
             align="center"
           />
           <ModalHeader>{props.modalName}</ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton backgroundColor="blue.100" _hover="blue.100" />
           <ModalBody>
 
             <Accordion allowToggle>

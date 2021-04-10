@@ -31,8 +31,8 @@ const Results = (props) => {
                         borderRadius="full"
                         boxSize="100px"
                     />
-                    <Box>
-                        <Text align="center">{props.name}</Text>
+                    <Box align="center">
+                        <Text align="center" fontSize="sm">{props.name}</Text>
                         <ResultModal
                             modalName={props.name}
                             modalSummary={props.modalSummary}

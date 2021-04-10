@@ -29,7 +29,7 @@ const Searchbar = () => {
             setLoading(true);
 
             try {
-                const searchResults = await axios(url);
+                const searchResults = await axios(url, {withCredentials: true});
                 setFoodData(searchResults.data);
                 console.log(searchResults);
             }
@@ -43,13 +43,13 @@ const Searchbar = () => {
         };
 
         fetchFoodData();
-    }, [url])
+    }, [url]);
 
     // Handle search event
     const searchHandler = (event) => {
         event.preventDefault();
         setUrl(
-            `https://api.spoonacular.com/recipes/complexSearch?query=${search}&addRecipeInformation=true&instructionsRequired=true&includeIngredients&number=1&apiKey=${API_KEY}` // Adjust number for amount of search results
+            `https://api.spoonacular.com/recipes/complexSearch?query=${search}&addRecipeInformation=true&instructionsRequired=true&includeIngredients&number=1&sort=popularity&apiKey=${API_KEY}` // Adjust number for amount of search results
             )
     }
 
