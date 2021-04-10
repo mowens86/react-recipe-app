@@ -49,7 +49,7 @@ const Searchbar = () => {
     const searchHandler = (event) => {
         event.preventDefault();
         setUrl(
-            `https://api.spoonacular.com/recipes/complexSearch?query=${search}&addRecipeInformation=true&instructionsRequired=true&includeIngredients&number=2&apiKey=${API_KEY}` // Adjust number for amount of search results
+            `https://api.spoonacular.com/recipes/complexSearch?query=${search}&addRecipeInformation=true&instructionsRequired=true&includeIngredients&number=1&apiKey=${API_KEY}` // Adjust number for amount of search results
             )
     }
 
@@ -61,6 +61,8 @@ const Searchbar = () => {
                 key={data.id}
                 name={data.title}
                 image={data.image}
+                modalSummary={data.summary}
+                modalInstructions={data.analyzedInstructions[0].steps}
             />
         ));
     }
@@ -79,7 +81,7 @@ const Searchbar = () => {
                     <Button rightIcon={<IoChevronForward />} type="submit">Search</Button>
                 </FormControl>
             </form>
-            <Stack direction={["column", "row"]} spacing="24px">
+            <Stack mt="4" direction={["column", "row"]} spacing="24px">
                 {foodResults}
             </Stack>
         </Box>

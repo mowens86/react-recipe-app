@@ -1,8 +1,10 @@
 import React from 'react';
+import ResultModal from '../ResultModal/ResultModal';
 import {
     Box,
     Image,
     Center,
+    Text,
     VStack
   } from "@chakra-ui/react";
 
@@ -12,9 +14,9 @@ const Results = (props) => {
     return (
         <Box 
             w="200px" 
-            h="300px" 
+            h="250px" 
             boxShadow="xl" 
-            p="6" 
+            p="4" 
             rounded="md" 
             bg="white" 
             border="2px" 
@@ -27,10 +29,16 @@ const Results = (props) => {
                         alt={props.name} 
                         title={props.name}
                         borderRadius="full"
-                        boxSize="150px"
+                        boxSize="100px"
                     />
                     <Box>
-                        <p>{props.name}</p>
+                        <Text align="center">{props.name}</Text>
+                        <ResultModal
+                            modalName={props.name}
+                            modalSummary={props.modalSummary}
+                            modalInstructions={props.modalInstructions}
+                            modalImage={props.image}
+                         />
                     </Box>
                 </VStack>
             </Center>
