@@ -54,7 +54,7 @@ const ResultModal = (props) => {
             align="center"
           />
           <ModalHeader>{props.modalName}</ModalHeader>
-          <ModalCloseButton backgroundColor="blue.100" _hover="blue.100" />
+          <ModalCloseButton backgroundColor="blue.100" />
           <ModalBody>
 
             <Accordion allowToggle>

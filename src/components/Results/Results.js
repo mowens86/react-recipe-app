@@ -1,5 +1,6 @@
 import React from 'react';
 import ResultModal from '../ResultModal/ResultModal';
+import StarRating from '../StarRating/StarRating';
 import {
     Box,
     Image,
@@ -13,13 +14,13 @@ const Results = (props) => {
 
     return (
         <Box 
-            w="200px" 
-            h="250px" 
+            w="225px" 
+            maxH="310px" 
             boxShadow="xl" 
             p="4" 
             rounded="md" 
             bg="white" 
-            border="2px" 
+            border="1px" 
             borderColor="gray.100"
         >
             <Center>
@@ -28,11 +29,14 @@ const Results = (props) => {
                         src={props.image} 
                         alt={props.name} 
                         title={props.name}
-                        borderRadius="full"
-                        boxSize="100px"
+                        borderRadius="sm"
                     />
                     <Box align="center">
                         <Text align="center" fontSize="sm">{props.name}</Text>
+                        <Text align="center" fontSize="x-small" mt="1">Health Rating: {props.score}</Text>
+                        <StarRating 
+                            score={props.score}
+                        />
                         <ResultModal
                             modalName={props.name}
                             modalSummary={props.modalSummary}

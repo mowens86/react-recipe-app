@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { IoChevronForward } from 'react-icons/io5';
+import Results from '../Results/Results';
+import axios from 'axios';
 import {
     Box,
     Button,
     FormControl,
     FormLabel,
     Input,
-    Stack
+    Stack,
+    HStack
   } from "@chakra-ui/react";
-import { IoChevronForward } from 'react-icons/io5';
-import Results from '../Results/Results';
-import axios from 'axios';
 
 
 const API_KEY = process.env.REACT_APP_FOOD_API_KEY;
@@ -29,7 +30,7 @@ const Searchbar = () => {
             setLoading(true);
 
             try {
-                const searchResults = await axios(url, {withCredentials: true});
+                const searchResults = await axios(url);
                 setFoodData(searchResults.data);
                 console.log(searchResults);
             }
@@ -49,7 +50,7 @@ const Searchbar = () => {
     const searchHandler = (event) => {
         event.preventDefault();
         setUrl(
-            `https://api.spoonacular.com/recipes/complexSearch?query=${search}&addRecipeInformation=true&instructionsRequired=true&includeIngredients&number=1&sort=popularity&apiKey=${API_KEY}` // Adjust number for amount of search results
+            `https://api.spoonacular.com/recipes/complexSearch?query=${search}&addRecipeInformation=true&instructionsRequired=true&includeIngredients&number=1&sort=popularity&autocomplete&apiKey=${API_KEY}` // Adjust number for amount of search results
             )
     }
 
@@ -61,24 +62,28 @@ const Searchbar = () => {
                 key={data.id}
                 name={data.title}
                 image={data.image}
+                score={data.spoonacularScore}
                 modalSummary={data.summary}
                 modalInstructions={data.analyzedInstructions[0].steps}
             />
         ));
     }
     
+    // Need to set error and loading if nothing is found for results
 
     return (
         <Box>
             <form onSubmit={searchHandler}>
                 <FormControl id="search">
                     <FormLabel>Search your favorite recipe</FormLabel>
+                    <HStack>
                     <Input 
                         type="text" 
                         placeholder="Type here..."
                         value={search}
                         onChange={event => setSearch(event.target.value)}/>
                     <Button rightIcon={<IoChevronForward />} type="submit">Search</Button>
+                    </HStack>
                 </FormControl>
             </form>
             <Stack mt="4" direction={["column", "row"]} spacing="24px">

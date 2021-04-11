@@ -4,18 +4,21 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from "@auth0/auth0-react";
 import { ChakraProvider } from "@chakra-ui/react";
+import { CookiesProvider } from 'react-cookie';
 
 ReactDOM.render(
   
     <React.StrictMode>
-      <ChakraProvider>
-        <Auth0Provider
-          domain="dev-mowens.us.auth0.com"
-          clientId="ppY1ISKYky0eQPPt3Dis5XmKyl4D2XYm"
-          redirectUri={window.location.origin}>
-          <App />
-        </Auth0Provider>
-      </ChakraProvider>
+      <CookiesProvider>
+        <ChakraProvider>
+          <Auth0Provider
+            domain="dev-mowens.us.auth0.com"
+            clientId="ppY1ISKYky0eQPPt3Dis5XmKyl4D2XYm"
+            redirectUri={window.location.origin}>
+            <App />
+          </Auth0Provider>
+        </ChakraProvider>
+      </CookiesProvider>
     </React.StrictMode>,
   document.getElementById('root')
 );

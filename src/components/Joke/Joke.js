@@ -1,3 +1,8 @@
+/**
+ * Spoonacular has a joke api call haha...thinking of making an Ask Jives section that tells food jokes with an image of Jives that pops out and tells a joke??
+ */
+
+
 // import React, { useState, useEffect } from 'react';
 
 // const Joke = (props) => {
