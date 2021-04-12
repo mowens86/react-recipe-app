@@ -11,3 +11,7 @@ export const htmlTagRemover = (str) => {
 
     return str.replace( /(<([^>]+)>)/ig, '');
 }
+
+export const foodTitleCutOff = (str) => {
+  return str.length > 50 ? str = `${str.substring(0,50)}...` : str;
+}

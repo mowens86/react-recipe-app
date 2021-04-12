@@ -4,7 +4,6 @@ import StarRating from '../StarRating/StarRating';
 import {
     Box,
     Image,
-    Center,
     Text,
     VStack
   } from "@chakra-ui/react";
@@ -23,7 +22,7 @@ const Results = (props) => {
             border="1px" 
             borderColor="gray.100"
         >
-            <Center>
+            
                 <VStack>
                     <Image 
                         src={props.image} 
@@ -31,21 +30,21 @@ const Results = (props) => {
                         title={props.name}
                         borderRadius="sm"
                     />
-                    <Box align="center">
-                        <Text align="center" fontSize="sm">{props.name}</Text>
-                        <Text align="center" fontSize="x-small" mt="1">Health Rating: {props.score}</Text>
+                    <Box w="100%">
+                        <Text fontSize="sm">{props.name}</Text>
+                        <Text fontSize="x-small" mt="1">Health Rating: {props.score}</Text>
                         <StarRating 
                             score={props.score}
                         />
                         <ResultModal
-                            modalName={props.name}
+                            modalName={props.fullName}
                             modalSummary={props.modalSummary}
                             modalInstructions={props.modalInstructions}
                             modalImage={props.image}
                          />
                     </Box>
                 </VStack>
-            </Center>
+            
         </Box>
     )
 }

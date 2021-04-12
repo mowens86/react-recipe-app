@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { IoChevronForward } from 'react-icons/io5';
+import { foodTitleCutOff } from '../Helpers/Helpers';
 import Results from '../Results/Results';
 import axios from 'axios';
 import {
@@ -9,7 +10,9 @@ import {
     FormLabel,
     Input,
     Stack,
-    HStack
+    Flex,
+    Spinner,
+    Center
   } from "@chakra-ui/react";
 
 
@@ -50,7 +53,7 @@ const Searchbar = () => {
     const searchHandler = (event) => {
         event.preventDefault();
         setUrl(
-            `https://api.spoonacular.com/recipes/complexSearch?query=${search}&addRecipeInformation=true&instructionsRequired=true&includeIngredients&number=1&sort=popularity&autocomplete&apiKey=${API_KEY}` // Adjust number for amount of search results
+            `https://api.spoonacular.com/recipes/complexSearch?query=${search}&addRecipeInformation=true&instructionsRequired=true&includeIngredients&number=3&sort=healthiness&sortDirection=desc&autocomplete&apiKey=${API_KEY}` // Adjust number for amount of search results
             )
     }
 
@@ -60,7 +63,8 @@ const Searchbar = () => {
         foodResults = foodData.results.map(data => ( // Loops through search results for all finds
             <Results
                 key={data.id}
-                name={data.title}
+                name={foodTitleCutOff(data.title)}
+                fullName={data.title}
                 image={data.image}
                 score={data.spoonacularScore}
                 modalSummary={data.summary}
@@ -70,20 +74,38 @@ const Searchbar = () => {
     }
     
     // Need to set error and loading if nothing is found for results
+    if (loading) {
+        foodResults = (
+            <Center>
+                <Spinner size="xl" color="red.500" />
+            </Center>
+        )
+    }
 
     return (
         <Box>
             <form onSubmit={searchHandler}>
                 <FormControl id="search">
                     <FormLabel>Search your favorite recipe</FormLabel>
-                    <HStack>
+                    <Flex>
                     <Input 
                         type="text" 
                         placeholder="Type here..."
                         value={search}
-                        onChange={event => setSearch(event.target.value)}/>
-                    <Button rightIcon={<IoChevronForward />} type="submit">Search</Button>
-                    </HStack>
+                        onChange={event => setSearch(event.target.value)}
+                        borderTopRightRadius="0"
+                        borderBottomRightRadius="0"                   
+                    />
+                    <Button 
+                        rightIcon={<IoChevronForward />} 
+                        type="submit"
+                        borderTopLeftRadius="0"
+                        borderBottomLeftRadius="0"
+                        marginInlineStart="0px"
+                        >
+                            Search
+                        </Button>
+                    </Flex>
                 </FormControl>
             </form>
             <Stack mt="4" direction={["column", "row"]} spacing="24px">

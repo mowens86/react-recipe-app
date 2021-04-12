@@ -25,7 +25,7 @@ const ResultModal = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [scrollBehavior, setScrollBehavior] = React.useState("inside");
 
-  // console.log(props.modalInstructions);
+  console.log(props.modalInstructions);
 
   return (
     <>
@@ -47,14 +47,14 @@ const ResultModal = (props) => {
         <ModalContent>
           <Image 
             src={props.modalImage} 
-            alt={props.name} 
-            title={props.name}
+            alt={props.modalName} 
+            title={props.modalName}
             borderTopRightRadius="md"
             borderTopLeftRadius="md"
             align="center"
           />
           <ModalHeader>{props.modalName}</ModalHeader>
-          <ModalCloseButton backgroundColor="blue.100" />
+          <ModalCloseButton backgroundColor="blue.100" _hover={{ backgroundColor: "blue.100" }} />
           <ModalBody>
 
             <Accordion allowToggle>
