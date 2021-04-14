@@ -8,7 +8,6 @@ export const htmlTagRemover = (str) => {
     } else {
       str = str.toString();
     } 
-
     return str.replace( /(<([^>]+)>)/ig, '');
 }
 

@@ -35,7 +35,7 @@ const Searchbar = () => {
             try {
                 const searchResults = await axios(url);
                 setFoodData(searchResults.data);
-                console.log(searchResults);
+                // console.log(searchResults);
             }
 
             catch (err) {

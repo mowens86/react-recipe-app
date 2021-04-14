@@ -3,49 +3,72 @@
  */
 
 
-// import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import {
+    Box,
+    Button,
+    Text
 
-// const Joke = (props) => {
-//     // States
-//     const [ jokeData, setJokeData ] = useState([]);
-//     const [ error, setError ] = useState(false);
-//     const [ loading, setLoading ] = useState(false);
-//     const [ search, setSearch ] = useState('');
-//     const [ url, setUrl ] = useState(``);
+} from "@chakra-ui/react";
+import axios from 'axios';
 
-//     useEffect(() => {
-//         const fetchJoke = async () => {
-//             setError(false);
-//             setLoading(true);
+const API_KEY = process.env.REACT_APP_FOOD_API_KEY;
 
-//             try {
-//                 const searchResults = await axios(url);
-//                 setFoodData(searchResults.data);
-//                 console.log(searchResults);
-//             }
+const Joke = (props) => {
+    // States
+    const [ jokeData, setJokeData ] = useState([]);
+    const [ error, setError ] = useState(false);
+    const [ loading, setLoading ] = useState(false);
+    const [ url, setUrl ] = useState(``);
 
-//             catch (err) {
-//                 setError(true);
-//                 console.log(err);
-//             }
-
-//             setLoading(false);
-//         };
-
-//         fetchFoodData();
-//     }, [url]);
-
-//         // Handle search event
-//         const searchHandler = (event) => {
-//             event.preventDefault();
-//             setUrl(
-//                 `https://api.spoonacular.com/food/jokes/random?apiKey=${API_KEY}` // Adjust number for amount of search results
-//                 )
-//         }
-
-//     return (
+    // useEffect(() => {
         
-//     )
-// }
 
-// export default Joke;
+        
+    // }, []);
+
+    const fetchJoke = async () => {
+        setError(false);
+        setLoading(true);
+
+        try {
+            const joke = await axios(`https://api.spoonacular.com/food/jokes/random?apiKey=${API_KEY}`);
+            setJokeData(joke.data);
+            console.log(joke.data);
+        }
+
+        catch (err) {
+            setError(true);
+            console.log(err);
+        }
+
+        setLoading(false);
+    };
+
+        // Handle joke event
+        const jokeHandler = (event) => {
+            event.preventDefault();
+            fetchJoke();
+        }
+
+        let joke;
+        if (jokeData !== '') {
+            joke = (
+                <Text>{jokeData.data}</Text>
+            )
+        }
+
+    return (
+        <Box>
+            
+            <Button onClick={jokeHandler}>Ask Jives</Button>
+            
+            <Box>
+                {joke}
+            </Box>
+            
+        </Box>
+    )
+}
+
+export default Joke;

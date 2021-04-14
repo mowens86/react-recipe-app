@@ -1,6 +1,7 @@
 import React from 'react';
 import Login from './components/Login/Login';
 import Searchbar from './components/Searchbar/Searchbar';
+import Joke from './components/Joke/Joke';
 import Footer from './components/Footer/Footer';
 import { Box, Container } from "@chakra-ui/react";
 
@@ -19,6 +20,7 @@ function App() {
 
       
           <Searchbar />
+          <Joke />
       </Container>
       <Footer />
     </Box>
