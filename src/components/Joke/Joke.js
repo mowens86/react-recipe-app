@@ -1,14 +1,18 @@
-/**
- * Spoonacular has a joke api call haha...thinking of making an Ask Jives section that tells food jokes with an image of Jives that pops out and tells a joke??
- */
-
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     Box,
     Button,
-    Text
-
+    ButtonGroup,
+    Text,
+    Image,
+    Popover,
+    PopoverTrigger,
+    PopoverContent,
+    PopoverHeader,
+    PopoverBody,
+    PopoverFooter,
+    PopoverArrow,
+    PopoverCloseButton,
 } from "@chakra-ui/react";
 import axios from 'axios';
 
@@ -17,56 +21,69 @@ const API_KEY = process.env.REACT_APP_FOOD_API_KEY;
 const Joke = (props) => {
     // States
     const [ jokeData, setJokeData ] = useState([]);
+    const [ jokeTrigger, setJokeTrigger ] = useState(false);
     const [ error, setError ] = useState(false);
     const [ loading, setLoading ] = useState(false);
-    const [ url, setUrl ] = useState(``);
 
-    // useEffect(() => {
-        
+    useEffect(() => {
+        getJoke();
+    }, [jokeTrigger]);
 
-        
-    // }, []);
+    // Call joke
+    const getJoke = () => {
+        axios.get(`https://api.spoonacular.com/food/jokes/random?apiKey=${API_KEY}`)
+            .then((res) => {
+                const resJoke = res.data;
+                setJokeData(resJoke);
+            });
+    }
 
-    const fetchJoke = async () => {
-        setError(false);
-        setLoading(true);
+    // Handle joke event
+    const jokeHandler = (event) => {
+        event.preventDefault();
+        setJokeTrigger(!jokeTrigger);
+    }
 
-        try {
-            const joke = await axios(`https://api.spoonacular.com/food/jokes/random?apiKey=${API_KEY}`);
-            setJokeData(joke.data);
-            console.log(joke.data);
-        }
+    let joke = <Text>{jokeData.text}</Text>;
+    if (jokeData.text !== jokeData) {
+        joke = (
+            <Text>{jokeData.text}</Text>
+        )
+    }
 
-        catch (err) {
-            setError(true);
-            console.log(err);
-        }
-
-        setLoading(false);
-    };
-
-        // Handle joke event
-        const jokeHandler = (event) => {
-            event.preventDefault();
-            fetchJoke();
-        }
-
-        let joke;
-        if (jokeData !== '') {
-            joke = (
-                <Text>{jokeData.data}</Text>
-            )
-        }
+    const initialFocusRef = React.useRef();
 
     return (
         <Box>
-            
-            <Button onClick={jokeHandler}>Ask Jives</Button>
-            
-            <Box>
-                {joke}
-            </Box>
-            
+            <Image src={`${process.env.PUBLIC_URL}/ask_jives.png`} />
+            <Popover
+                      initialFocusRef={initialFocusRef}
+                      placement="bottom"
+                      closeOnBlur={false}
+            >
+                <PopoverTrigger>
+                    <Button>Ask Jives</Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                    <PopoverArrow />
+                    <PopoverCloseButton />
+                    <PopoverHeader>Let me tell you a joke...</PopoverHeader>
+                    <PopoverBody>{joke}</PopoverBody>
+                    <PopoverFooter
+                        border="0"
+                        d="flex"
+                        alignItems="center"
+                        justifyContent="space-between"
+                        pb={4}
+                        >
+                        <ButtonGroup size="sm">
+                            <Button colorScheme="blue" ref={initialFocusRef} onClick={jokeHandler}>
+                                Tell Another
+                            </Button>
+                        </ButtonGroup>
+                    </PopoverFooter>
+                </PopoverContent>
+            </Popover>    
         </Box>
     )
 }
