@@ -35,7 +35,7 @@ const Searchbar = () => {
             try {
                 const searchResults = await axios(url);
                 setFoodData(searchResults.data);
-                // console.log(searchResults);
+                console.log(searchResults);
             }
 
             catch (err) {
@@ -68,7 +68,7 @@ const Searchbar = () => {
                 image={data.image}
                 score={data.spoonacularScore}
                 modalSummary={data.summary}
-                modalInstructions={data.analyzedInstructions[0].steps}
+                modalInstructions={data.spoonacularSourceUrl}
             />
         ));
     }
