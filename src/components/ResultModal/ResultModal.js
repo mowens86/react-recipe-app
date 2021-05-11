@@ -17,7 +17,9 @@ import {
   AccordionPanel,
   AccordionIcon,
   useDisclosure,
-  Link
+  Link,
+  Center,
+  Spinner
 } from "@chakra-ui/react";
 
 
@@ -25,7 +27,11 @@ const ResultModal = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [scrollBehavior, setScrollBehavior] = React.useState("inside");
 
-  // console.log(props.modalInstructions);
+  const noImage = (
+    <Center>
+      <Spinner size="xl" color="red.500" />
+    </Center>
+  )
 
   return (
     <>
@@ -49,6 +55,7 @@ const ResultModal = (props) => {
             src={props.modalImage}
             alt={props.modalName}
             title={props.modalName}
+            onError={noImage}
             borderTopRightRadius="md"
             borderTopLeftRadius="md"
             align="center"
@@ -77,7 +84,7 @@ const ResultModal = (props) => {
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
             </Button>
-            <Link style={{textDecoration: 'none'}} href={props.modalInstructions} isExternal>
+            <Link style={{ textDecoration: 'none' }} href={props.modalInstructions} isExternal>
               <Button colorScheme="red">Go to Recipe</Button>
             </Link>
           </ModalFooter>

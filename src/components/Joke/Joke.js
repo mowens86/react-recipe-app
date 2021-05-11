@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Box,
     Button,
@@ -55,6 +55,7 @@ const Joke = (props) => {
 
     return (
         <Box>
+            <Text fontSize="3xl">Ask Jives a Food Joke!</Text>
             <Image src={`${process.env.PUBLIC_URL}/ask_jives.png`} />
             <Popover
                       initialFocusRef={initialFocusRef}

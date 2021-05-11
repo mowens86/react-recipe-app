@@ -13,18 +13,18 @@ import {
     Flex,
     Spinner,
     Center
-  } from "@chakra-ui/react";
+} from "@chakra-ui/react";
 
 
 const API_KEY = process.env.REACT_APP_FOOD_API_KEY;
 
 const Searchbar = () => {
     // States
-    const [ foodData, setFoodData ] = useState([]);
-    const [ error, setError ] = useState(false);
-    const [ loading, setLoading ] = useState(false);
-    const [ search, setSearch ] = useState('');
-    const [ url, setUrl ] = useState(``);
+    const [foodData, setFoodData] = useState([]);
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [search, setSearch] = useState('');
+    const [url, setUrl] = useState(``);
 
     // Fetch data by searching for food
     useEffect(() => {
@@ -35,7 +35,7 @@ const Searchbar = () => {
             try {
                 const searchResults = await axios(url);
                 setFoodData(searchResults.data);
-                console.log(searchResults);
+                // console.log(searchResults);
             }
 
             catch (err) {
@@ -54,7 +54,7 @@ const Searchbar = () => {
         event.preventDefault();
         setUrl(
             `https://api.spoonacular.com/recipes/complexSearch?query=${search}&addRecipeInformation=true&instructionsRequired=true&includeIngredients&number=3&sort=healthiness&sortDirection=desc&autocomplete&apiKey=${API_KEY}` // Adjust number for amount of search results
-            )
+        )
     }
 
     let foodResults;
@@ -72,7 +72,7 @@ const Searchbar = () => {
             />
         ));
     }
-    
+
     // Need to set error and loading if nothing is found for results
     if (loading) {
         foodResults = (
@@ -88,20 +88,20 @@ const Searchbar = () => {
                 <FormControl id="search">
                     <FormLabel>Search your favorite recipe</FormLabel>
                     <Flex>
-                    <Input 
-                        type="text" 
-                        placeholder="Type here..."
-                        value={search}
-                        onChange={event => setSearch(event.target.value)}
-                        borderTopRightRadius="0"
-                        borderBottomRightRadius="0"                   
-                    />
-                    <Button 
-                        rightIcon={<IoChevronForward />} 
-                        type="submit"
-                        borderTopLeftRadius="0"
-                        borderBottomLeftRadius="0"
-                        marginInlineStart="0px"
+                        <Input
+                            type="text"
+                            placeholder="Type here..."
+                            value={search}
+                            onChange={event => setSearch(event.target.value)}
+                            borderTopRightRadius="0"
+                            borderBottomRightRadius="0"
+                        />
+                        <Button
+                            rightIcon={<IoChevronForward />}
+                            type="submit"
+                            borderTopLeftRadius="0"
+                            borderBottomLeftRadius="0"
+                            marginInlineStart="0px"
                         >
                             Search
                         </Button>

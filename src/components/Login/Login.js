@@ -1,15 +1,9 @@
 import React from 'react';
 import LoginButton from '../UI/LoginButton/LoginButton';
-import LogoutButton from '../UI/LogoutButton/LogoutButton';
 import {
     Flex,
     Box,
-    FormControl,
-    FormLabel,
-    Input,
     Stack,
-    Link,
-    Button,
     Heading,
     Text,
     useColorModeValue,
@@ -17,18 +11,13 @@ import {
 
   export default function Login() {
 
-    /**
-     * Must set-up Google Dev Console for Auth0 to work in production environment
-     */
-
-    // Create initial sign-up page with link to login page if already have an account
-
     return (
         <Flex
-        minH={'100vh'}
-        align={'center'}
-        justify={'center'}
-        bg={useColorModeValue('gray.50', 'gray.800')}>
+            minH={'100vh'}
+            align={'center'}
+            justify={'center'}
+            backgroundImage={`${process.env.PUBLIC_URL}/salad.jpg`}
+        >
             <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
             <Box
                 rounded={'lg'}
@@ -40,8 +29,7 @@ import {
                         <Text fontSize={'lg'} color={'gray.600'}>
                         to enjoy all of our cool recipes 🍲
                         </Text>
-                        <LoginButton>Get Started</LoginButton>
-                        <LogoutButton>Logout</LogoutButton>
+                        <LoginButton>Login</LoginButton>
                 </Stack>
             </Box>
             </Stack>
