@@ -29,7 +29,7 @@ import {
                         <Text fontSize={'lg'} color={'gray.600'}>
                         to enjoy all of our cool recipes 🍲
                         </Text>
-                        <LoginButton>Login</LoginButton>
+                        <LoginButton>Get Started</LoginButton>
                 </Stack>
             </Box>
             </Stack>

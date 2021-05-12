@@ -6,11 +6,13 @@ import Footer from './components/Footer/Footer';
 import { Box, Container } from "@chakra-ui/react";
 import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from './components/UI/LogoutButton/LogoutButton';
+import IsLoading from './components/UI/IsLoading/IsLoading';
 
 function App() {
   const { isAuthenticated, isLoading } = useAuth0();
+  
 
-  if (isLoading) return <Container>Loading...</Container>
+  if (isLoading) return <IsLoading />
 
   if (!isAuthenticated) {
     return (
@@ -23,8 +25,8 @@ function App() {
             justify={{ base: 'center', md: 'space-between' }}
             align={{ base: 'center', md: 'center' }}
             bgImage={`url(${process.env.PUBLIC_URL}/salad.jpg)`}
+            pb="10rem"
           >
-  
             <Login/>
         </Container>
         <Footer />
@@ -42,8 +44,7 @@ function App() {
             spacing={4}
             justify={{ base: 'center', md: 'space-between' }}
             align={{ base: 'center', md: 'center' }}
-            // bgImage={`url(${process.env.PUBLIC_URL}/salad.jpg)`}
-            pb="5rem"
+            pb="15rem"
           >
             <Searchbar />
             <Joke />
