@@ -25,7 +25,6 @@ import {
 
 const ResultModal = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [scrollBehavior, setScrollBehavior] = React.useState("inside");
 
   const noImage = (
     <Center>
@@ -47,7 +46,7 @@ const ResultModal = (props) => {
         onClose={onClose}
         isOpen={isOpen}
         motionPreset="slideInBottom"
-        scrollBehavior={scrollBehavior}
+        scrollBehavior="inside"
       >
         <ModalOverlay />
         <ModalContent>

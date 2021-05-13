@@ -12,7 +12,8 @@ import {
     Stack,
     Flex,
     Spinner,
-    Center
+    Center,
+    Text
 } from "@chakra-ui/react";
 
 
@@ -59,6 +60,25 @@ const Searchbar = () => {
 
     let foodResults;
 
+    // Need to set error and loading if nothing is found for results
+    if (loading) {
+        foodResults = (
+            <Center>
+                <Spinner size="xl" color="red.500" />
+            </Center>
+        )
+    }
+
+    // Need to fix this error, causing too many redirects
+    if (error) {
+        foodResults = (
+            <Center>
+                <Text>Search for food...</Text>
+            </Center>
+        )
+    }
+    
+
     if (foodData.results !== undefined) {
         foodResults = foodData.results.map(data => ( // Loops through search results for all finds
             <Results
@@ -73,14 +93,7 @@ const Searchbar = () => {
         ));
     }
 
-    // Need to set error and loading if nothing is found for results
-    if (loading) {
-        foodResults = (
-            <Center>
-                <Spinner size="xl" color="red.500" />
-            </Center>
-        )
-    }
+
 
     return (
         <Box>

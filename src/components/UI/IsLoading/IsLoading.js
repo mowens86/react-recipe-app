@@ -1,4 +1,4 @@
-import { Box, Center, Container, Text } from '@chakra-ui/layout';
+import { Center, Container, Text } from '@chakra-ui/layout';
 import { Progress } from '@chakra-ui/progress';
 import React from 'react';
 import Footer from '../../Footer/Footer';
