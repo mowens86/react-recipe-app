@@ -8,7 +8,7 @@ import {
     useColorModeValue,
     Center
 } from '@chakra-ui/react';
-import LoginButton from '../UI/LoginButton/LoginButton';
+import LoginButton from '../UI/loginButton/LoginButton';
 
 export default function Login() {
 
