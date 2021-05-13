@@ -1,5 +1,4 @@
 import React from 'react';
-import LoginButton from '../UI/LoginButton/LoginButton';
 import {
     Flex,
     Box,
@@ -7,31 +6,41 @@ import {
     Heading,
     Text,
     useColorModeValue,
-  } from '@chakra-ui/react';
+    Center
+} from '@chakra-ui/react';
+import LoginButton from '../UI/LoginButton/LoginButton';
 
-  export default function Login() {
+export default function Login() {
 
     return (
         <Flex
             minH={'100vh'}
             align={'center'}
             justify={'center'}
-            backgroundImage={`${process.env.PUBLIC_URL}/salad.jpg`}
         >
-            <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-            <Box
-                rounded={'lg'}
-                bg={useColorModeValue('white', 'gray.700')}
-                boxShadow={'lg'}
-                p={8}>
-                <Stack spacing={4}>
-                    <Heading fontSize={'4xl'}>Sign up or login</Heading>
+            <Stack
+                spacing={8}
+                mx={'auto'}
+                maxW={'lg'}
+                py={12}
+                px={6}
+            >
+                <Box
+                    rounded={'lg'}
+                    bg={useColorModeValue('white', 'gray.700')}
+                    boxShadow={'lg'}
+                    p={8}
+                >
+                    <Stack spacing={4}>
+                        <Center>
+                            <Heading fontSize={'4xl'}>Welcome to Sporked</Heading>
+                        </Center>
                         <Text fontSize={'lg'} color={'gray.600'}>
-                        to enjoy all of our cool recipes 🍲
+                            Sign up or login to enjoy all of our cool recipes 🍲
                         </Text>
                         <LoginButton>Get Started</LoginButton>
-                </Stack>
-            </Box>
+                    </Stack>
+                </Box>
             </Stack>
         </Flex>
     );

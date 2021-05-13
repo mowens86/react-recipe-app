@@ -16,7 +16,10 @@ function App() {
 
   if (!isAuthenticated) {
     return (
-      <Box minH="100vh">
+      <Box minH="100vh"
+      bgImage={`url(${process.env.PUBLIC_URL}/salad.jpg)`}
+      bgAttachment="fixed"
+      >
         <Container 
             maxW={'6xl'}
             py={4}
@@ -24,7 +27,7 @@ function App() {
             spacing={4}
             justify={{ base: 'center', md: 'space-between' }}
             align={{ base: 'center', md: 'center' }}
-            bgImage={`url(${process.env.PUBLIC_URL}/salad.jpg)`}
+            // bgImage={`url(${process.env.PUBLIC_URL}/salad.jpg)`}
             pb="10rem"
           >
             <Login/>

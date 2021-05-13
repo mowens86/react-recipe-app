@@ -22,8 +22,6 @@ const Joke = (props) => {
     // States
     const [ jokeData, setJokeData ] = useState([]);
     const [ jokeTrigger, setJokeTrigger ] = useState(false);
-    const [ error, setError ] = useState(false);
-    const [ loading, setLoading ] = useState(false);
 
     useEffect(() => {
         getJoke();

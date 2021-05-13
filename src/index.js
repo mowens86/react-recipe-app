@@ -5,12 +5,14 @@ import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from "@auth0/auth0-react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { CookiesProvider } from 'react-cookie';
+import theme from './components/UI/Theme/Theme';
+import "@fontsource/condiment/400.css";
+import "@fontsource/roboto-condensed/400.css";
 
 ReactDOM.render(
-  
     <React.StrictMode>
       <CookiesProvider>
-        <ChakraProvider>
+        <ChakraProvider theme={theme}>
           <Auth0Provider
             domain="dev-mowens.us.auth0.com"
             clientId="ppY1ISKYky0eQPPt3Dis5XmKyl4D2XYm"
