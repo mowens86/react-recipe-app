@@ -1,5 +1,4 @@
 import React from 'react';
-import { htmlTagRemover } from '../Helpers/Helpers';
 import ReactHtmlParser from 'react-html-parser'; 
 import {
   Box,
