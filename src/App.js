@@ -10,25 +10,24 @@ import IsLoading from './components/UI/IsLoading/IsLoading';
 
 function App() {
   const { isAuthenticated, isLoading } = useAuth0();
-  
 
   if (isLoading) return <IsLoading />
 
   if (!isAuthenticated) {
     return (
       <Box minH="100vh"
-      bgImage={`url(${process.env.PUBLIC_URL}/salad.jpg)`}
-      bgAttachment="fixed"
+        bgImage={`url(${process.env.PUBLIC_URL}/salad.jpg)`}
+        bgAttachment="fixed"
+        bgRepeat="no-repeat"
+        bgSize="cover"
+        bgPosition="center"
       >
         <Container 
             maxW={'6xl'}
             py={4}
             direction={{ base: 'column', md: 'row' }}
             spacing={4}
-            justify={{ base: 'center', md: 'space-between' }}
-            align={{ base: 'center', md: 'center' }}
-            // bgImage={`url(${process.env.PUBLIC_URL}/salad.jpg)`}
-            pb="10rem"
+            p="0"
           >
             <Login/>
         </Container>
@@ -45,9 +44,6 @@ function App() {
             py={4}
             direction={{ base: 'column', md: 'row' }}
             spacing={4}
-            justify={{ base: 'center', md: 'space-between' }}
-            align={{ base: 'center', md: 'center' }}
-            pb="15rem"
           >
             <Searchbar />
             <Joke />

@@ -1,5 +1,6 @@
 import React from 'react';
 import { htmlTagRemover } from '../Helpers/Helpers';
+import ReactHtmlParser from 'react-html-parser'; 
 import {
   Box,
   Button,
@@ -73,7 +74,7 @@ const ResultModal = (props) => {
                     <AccordionIcon />
                   </AccordionButton>
                 </h3>
-                <AccordionPanel>{htmlTagRemover(props.modalSummary)}</AccordionPanel>
+                <AccordionPanel>{ReactHtmlParser(props.modalSummary)}</AccordionPanel>
               </AccordionItem>
             </Accordion>
 

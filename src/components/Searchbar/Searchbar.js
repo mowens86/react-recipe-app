@@ -20,6 +20,7 @@ import {
 const API_KEY = process.env.REACT_APP_FOOD_API_KEY;
 
 const Searchbar = () => {
+
     // States
     const [foodData, setFoodData] = useState([]);
     const [error, setError] = useState(false);
@@ -29,6 +30,7 @@ const Searchbar = () => {
 
     // Fetch data by searching for food
     useEffect(() => {
+
         const fetchFoodData = async () => {
             setError(false);
             setLoading(true);
@@ -36,14 +38,13 @@ const Searchbar = () => {
             try {
                 const searchResults = await axios(url);
                 setFoodData(searchResults.data);
-                // console.log(searchResults);
+                console.log(searchResults);
             }
 
             catch (err) {
                 setError(true);
                 console.log(err);
             }
-
             setLoading(false);
         };
 
@@ -53,8 +54,10 @@ const Searchbar = () => {
     // Handle search event
     const searchHandler = (event) => {
         event.preventDefault();
+        // Adjust numberOfResults for amount of search results
+        let numberOfResults = 2;
         setUrl(
-            `https://api.spoonacular.com/recipes/complexSearch?query=${search}&addRecipeInformation=true&instructionsRequired=true&includeIngredients&number=3&sort=healthiness&sortDirection=desc&autocomplete&apiKey=${API_KEY}` // Adjust number for amount of search results
+            `https://api.spoonacular.com/recipes/complexSearch?query=${search}&addRecipeInformation=true&instructionsRequired=true&includeIngredients&number=${numberOfResults}&sort=healthiness&sortDirection=desc&autocomplete&apiKey=${API_KEY}`
         )
     }
 
@@ -80,17 +83,20 @@ const Searchbar = () => {
     
 
     if (foodData.results !== undefined) {
-        foodResults = foodData.results.map(data => ( // Loops through search results for all finds
-            <Results
-                key={data.id}
-                name={foodTitleCutOff(data.title)}
-                fullName={data.title}
-                image={data.image}
-                score={data.spoonacularScore}
-                modalSummary={data.summary}
-                modalInstructions={data.spoonacularSourceUrl}
-            />
-        ));
+
+          foodResults = foodData.results.map(data => ( 
+              // Loops through search results for all finds
+                <Results
+                    key={data.id}
+                    name={foodTitleCutOff(data.title)}
+                    fullName={data.title}
+                    image={data.image}
+                    score={data.spoonacularScore}
+                    modalSummary={data.summary}
+                    modalInstructions={data.spoonacularSourceUrl}
+                />
+                )
+            );
     }
 
 
